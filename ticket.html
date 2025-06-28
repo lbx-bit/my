@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>敦煌文化海外展 - 购票页面</title>
+    <style>
+        /* 重置样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        /* 导航栏样式 */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #8B4513;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-container img {
+            height: 90px; /* 在这里修改Logo的高度 */
+            width: auto;  /* 在这里修改Logo的宽度（如果需要） */
+        }
+        
+        .title {
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-align: center;
+            margin: 0 20px;
+            flex: 1;
+        }
+        
+        .nav-bar {
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-bar a:hover {
+            background-color: #5D2906;
+        }
+        
+        .nav-bar a.active {
+            background-color: #5D2906;
+        }
+        
+        /* 主要内容区域 */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* 原有页面样式 */
+        .exhibition-info {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .info-row {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .info-label {
+            width: 120px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .ticket-types {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .ticket-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .ticket-option {
+            flex: 1;
+            min-width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .ticket-option:hover {
+            border-color: #8B4513;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .ticket-type {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #8B4513;
+        }
+
+        .ticket-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e63946;
+            margin-bottom: 15px;
+        }
+
+        .ticket-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .ticket-quantity {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .quantity-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .quantity-input {
+            width: 40px;
+            height: 30px;
+            text-align: center;
+            margin: 0 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .booking-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .form-title {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-row {
+            display: flex;
+            margin-bottom: 20px;
+            gap: 20px;
+        }
+
+        .form-group {
+            flex: 1;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #8B4513;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+        }
+
+        .form-checkbox {
+            margin-bottom: 20px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .checkbox-input {
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            background-color: #8B4513;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .submit-btn:hover {
+            background-color: #6d360a;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        .total-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #e63946;
+            text-align: right;
+            margin-bottom: 10px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .modal-text {
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .modal-btn {
+            background-color: #8B4513;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .modal-btn:hover {
+            background-color: #6d360a;
+        }
+
+        /* 响应式调整 */
+        @media screen and (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .logo-container {
+                margin-bottom: 10px;
+            }
+
+            .title {
+                margin-bottom: 10px;
+            }
+
+            .nav-bar {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .ticket-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面头部，包含logo和导航栏 -->
+    <div class="header">
+        <div class="logo-container">
+            <img src="../img/logo.jpg" alt="Logo">
+        </div>
+        <div class="title">敦煌文化海外展</div>
+        <div class="nav-bar">
+            <a href="index.html">首页</a>
+            <a href="exhibition.html">展品精选</a>
+            <a href="history.html">敦煌历史</a>
+            <a href="ticket.html" class="active">购票展览</a>
+            <a href="about.html">关于我们</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="exhibition-info">
+            <h2>展览信息</h2>
+            <div class="info-row">
+                <div class="info-label">展览名称：</div>
+                <div class="info-content">敦煌文化海外展</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">展览时间：</div>
+                <div class="info-content">2024年1月10日 - 2024年4月30日</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">展览地点：</div>
+                <div class="info-content">法国巴黎卢浮宫博物馆</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">开放时间：</div>
+                <div class="info-content">周二至周日 10:00 - 18:00（周一闭馆）</div>
+            </div>
+        </section>
+
+        <section class="ticket-types">
+            <div class="ticket-header">
+                <h2>门票类型</h2>
+            </div>
+            <div class="ticket-options">
+                <div class="ticket-option">
+                    <div class="ticket-type">单人票</div>
+                    <div class="ticket-price">¥120</div>
+                    <div class="ticket-description">适用于普通成人参观，展览期间单次入场有效</div>
+                    <div class="ticket-quantity">
+                        <button class="quantity-btn" onclick="updateQuantity('adult', -1)">-</button>
+                        <input type="number" id="adult-quantity" class="quantity-input" value="0" min="0" max="99" readonly>
+                        <button class="quantity-btn" onclick="updateQuantity('adult', 1)">+</button>
+                    </div>
+                </div>
+                <div class="ticket-option">
+                    <div class="ticket-type">学生票</div>
+                    <div class="ticket-price">¥80</div>
+                    <div class="ticket-description">适用于全日制学生，需出示有效学生证</div>
+                    <div class="ticket-quantity">
+                        <button class="quantity-btn" onclick="updateQuantity('student', -1)">-</button>
+                        <input type="number" id="student-quantity" class="quantity-input" value="0" min="0" max="99" readonly>
+                        <button class="quantity-btn" onclick="updateQuantity('student', 1)">+</button>
+                    </div>
+                </div>
+                <div class="ticket-option">
+                    <div class="ticket-type">儿童票</div>
+                    <div class="ticket-price">¥50</div>
+                    <div class="ticket-description">适用于6-12岁儿童，需成人陪同</div>
+                    <div class="ticket-quantity">
+                        <button class="quantity-btn" onclick="updateQuantity('child', -1)">-</button>
+                        <input type="number" id="child-quantity" class="quantity-input" value="0" min="0" max="99" readonly>
+                        <button class="quantity-btn" onclick="updateQuantity('child', 1)">+</button>
+                    </div>
+                </div>
+                <div class="ticket-option">
+                    <div class="ticket-type">家庭票</div>
+                    <div class="ticket-price">¥280</div>
+                    <div class="ticket-description">适用于2位成人和2位儿童</div>
+                    <div class="ticket-quantity">
+                        <button class="quantity-btn" onclick="updateQuantity('family', -1)">-</button>
+                        <input type="number" id="family-quantity" class="quantity-input" value="0" min="0" max="99" readonly>
+                        <button class="quantity-btn" onclick="updateQuantity('family', 1)">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="total-price">总价：¥<span id="total-price">0</span></div>
+        </section>
+
+        <section class="booking-form">
+            <h2 class="form-title">参观预约</h2>
+            <form id="ticket-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="visit-date">参观日期：</label>
+                        <input type="date" id="visit-date" class="form-input" required min="">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="visit-time">参观时间：</label>
+                        <select id="visit-time" class="form-select" required>
+                            <option value="">请选择时间段</option>
+                            <option value="morning">上午场 (10:00 - 13:00)</option>
+                            <option value="afternoon">下午场 (14:00 - 17:00)</option>
+                            <option value="evening">晚间场 (18:00 - 20:00)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="visitor-name">姓名：</label>
+                        <input type="text" id="visitor-name" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="visitor-id">身份证号：</label>
+                        <input type="text" id="visitor-id" class="form-input" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="visitor-phone">手机号码：</label>
+                        <input type="tel" id="visitor-phone" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="visitor-email">电子邮箱：</label>
+                        <input type="email" id="visitor-email" class="form-input" required>
+                    </div>
+                </div>
+                <div class="form-checkbox">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="agreement" class="checkbox-input" required>
+                        我已阅读并同意<a href="#" style="color: #8B4513; text-decoration: none;">《参观须知》</a>和<a href="#" style="color: #8B4513; text-decoration: none;">《隐私政策》</a>
+                    </label>
+                </div>
+                <button type="submit" class="submit-btn">确认购票</button>
+            </form>
+        </section>
+    </div>
+
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <h2 class="modal-title">购票成功！</h2>
+            <p class="modal-text">您的订单已成功提交。订单详情已发送至您的邮箱，请注意查收。</p>
+            <button class="modal-btn" onclick="closeModal()">确定</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 版权所有 陆碧霞</p>
+        </div>
+    </footer>
+
+    <script>
+        // 设置日期选择器的最小日期为今天
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('visit-date').min = today;
+        });
+
+        // 更新数量
+        function updateQuantity(type, change) {
+            let quantity = parseInt(document.getElementById(`${type}-quantity`).value) || 0;
+            quantity += change;
+            
+            if (quantity < 0) quantity = 0;
+            if (quantity > 99) quantity = 99; // 限制最大数量为99
+
+            document.getElementById(`${type}-quantity`).value = quantity;
+            updateTotal();
+        }
+
+        // 计算总价
+        function updateTotal() {
+            const prices = {
+                adult: 120,
+                student: 80,
+                child: 50,
+                family: 280
+            };
+
+            let total = 0;
+            let adultQty = parseInt(document.getElementById('adult-quantity').value) || 0;
+            let studentQty = parseInt(document.getElementById('student-quantity').value) || 0;
+            let childQty = parseInt(document.getElementById('child-quantity').value) || 0;
+            let familyQty = parseInt(document.getElementById('family-quantity').value) || 0;
+
+            total += adultQty * prices.adult;
+            total += studentQty * prices.student;
+            total += childQty * prices.child;
+            total += familyQty * prices.family;
+
+            document.getElementById('total-price').textContent = total;
+        }
+
+        // 处理表单提交
+        document.getElementById('ticket-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 这里可以添加表单验证逻辑
+            
+            // 模拟表单提交成功
+            document.getElementById('success-modal').style.display = 'flex';
+        });
+
+        // 关闭弹窗
+        function closeModal() {
+            document.getElementById('success-modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

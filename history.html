@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>敦煌历史与一带一路</title>
+    <style>
+        /* 重置样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* 导航栏样式 */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #8B4513;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-container img {
+            height: 90px; /* 在这里修改Logo的高度 */
+            width: auto;  /* 在这里修改Logo的宽度（如果需要） */
+        }
+        
+        .title {
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-align: center;
+            margin: 0 20px;
+            flex: 1;
+        }
+        
+        .nav-bar {
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-bar a:hover {
+            background-color: #5D2906;
+        }
+        
+        .nav-bar a.active {
+            background-color: #5D2906;
+        }
+        
+        /* 主要内容区域 */
+        .main-content {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .collection-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #8B4513;
+        }
+
+        /* 原有页面样式 */
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin: 30px 0;
+            color: #333;
+        }
+
+        .intro-section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #8B4513;
+            margin-bottom: 20px;
+            font-size: 25px;
+        }
+
+        .intro-text {
+            font-size: 25px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .video-section {
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            background-color: white; /* 添加背景色，使视频区域更突出 */
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            height: 0;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* 添加阴影效果，增强视觉层次感 */
+            border-radius: 8px; /* 添加圆角，使视频区域更美观 */
+            overflow: hidden; /* 确保视频内容不会溢出容器 */
+        }
+
+        .video-container iframe, .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 确保视频内容填充整个容器 */
+        }
+
+        /* 视频标题样式 */
+        .video-title {
+            color: #8B4513;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .history-section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #8B4513;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: white;
+            border: 4px solid #8B4513;
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::after {
+            right: -17px;
+        }
+
+        .right::after {
+            left: -17px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: #f9f3e6;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: #8B4513;
+            font-size: 17px;
+        }
+
+        .timeline-text {
+            line-height: 1.6;
+            font-size: 17px;
+        }
+
+        .silk-road-section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            background-color: #e6f2ff;
+            margin: 20px 0;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #666;
+        }
+
+        .modern-projects-section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .project-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .project-card {
+            flex: 1;
+            min-width: 300px;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 180px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        /* 项目图片悬停效果 */
+        /* 第一张：360°旋转 */
+        .project-cards .project-card:nth-child(1) .project-image img:hover {
+            transform: rotate(360deg);
+        }
+        
+        /* 第二张：向左倾斜45° */
+        .project-cards .project-card:nth-child(2) .project-image img:hover {
+            transform: rotate(-45deg) scale(1.2);
+        }
+        
+        /* 第三张：保持不变 */
+        .project-cards .project-card:nth-child(3) .project-image img:hover {
+            transform: scale(1.1);
+        }
+
+        .project-details {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #8B4513;
+        }
+
+        .project-description {
+            font-size: 17px;
+            line-height: 1.5;
+            color: #666;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        /* 响应式调整 */
+        @media screen and (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .logo-container {
+                margin-bottom: 10px;
+            }
+
+            .title {
+                margin: 10px 0;
+            }
+
+            .nav-bar {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 21px;
+            }
+
+            .left::after, .right::after {
+                left: 21px;
+            }
+
+            .right {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面头部，包含logo和导航栏 -->
+    <div class="header">
+        <div class="logo-container">
+            <img src="../img/logo.jpg" alt="Logo">
+        </div>
+        <div class="title">敦煌文化海外展</div>
+        <div class="nav-bar">
+            <a href="index.html">首页</a>
+            <a href="exhibition.html">展品精选</a>
+            <a href="history.html" class="active">敦煌历史</a>
+            <a href="ticket.html">购票展览</a>
+            <a href="about.html">关于我们</a>
+        </div>
+    </div>
+
+    <!-- 主要内容区域 -->
+    <div class="container">
+        <h1 class="page-title">敦煌历史与一带一路</h1>
+
+        <section class="intro-section">
+            <h2 class="section-title">引言</h2>
+            <p class="intro-text">
+                敦煌，这座位于中国西北部的小城，是古代丝绸之路上的璀璨明珠，也是东西方文化交流的重要枢纽。作为古代中国与中亚、欧洲之间的交通要道，敦煌在历史上扮演了不可替代的角色。今天，作为"一带一路"倡议的重要节点，敦煌再次焕发出新的活力，成为连接过去与未来的文化桥梁。
+            </p>
+            <p class="intro-text">
+                在这个页面中，我们将带您穿越时空，探索敦煌两千多年的历史变迁，以及它在现代"一带一路"倡议中的重要地位。
+            </p>
+        </section>
+
+        <!-- 视频部分 - 已调整 -->
+        <section class="video-section">
+            <h2 class="video-title">敦煌莫高窟 - 丝绸之路上的艺术瑰宝</h2>
+            <div class="video-container">
+                <video src="../img/敦煌视频.mp4" controls poster="../img/dunhuang_poster.jpg">
+                </video>
+            </div>
+            <p class="intro-text" style="text-align: center; margin-top: 15px; color: #666;">
+                本视频展示了敦煌莫高窟的壮丽景色和珍贵壁画，带您领略丝绸之路上的艺术瑰宝。
+            </p>
+        </section>
+
+        <section class="history-section">
+            <h2 class="section-title">敦煌历史时间线</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">公元前111年</div>
+                        <div class="timeline-text">
+                            汉武帝设立敦煌郡，标志着敦煌正式纳入汉朝版图，成为丝绸之路的重要节点。
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">公元366年</div>
+                        <div class="timeline-text">
+                            乐僔和尚在鸣沙山东麓开凿第一个洞窟，莫高窟由此诞生，开启了敦煌石窟艺术的辉煌篇章。
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">公元7世纪-9世纪</div>
+                        <div class="timeline-text">
+                            敦煌进入吐蕃统治时期，但丝绸之路的贸易和文化交流并未中断，反而更加多元。
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">公元10世纪</div>
+                        <div class="timeline-text">
+                            归义军时期，敦煌保持相对独立和繁荣，佛教文化达到鼎盛。
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">公元1000年左右</div>
+                        <div class="timeline-text">
+                            莫高窟藏经洞封闭，大量珍贵文物被封存，直到近千年后的1900年被重新发现。
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1900年</div>
+                        <div class="timeline-text">
+                            莫高窟藏经洞被偶然发现，出土了5万多件古代文献和艺术品，震惊世界。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="silk-road-section">
+            <h2 class="section-title">丝绸之路与一带一路</h2>
+            <p class="intro-text">
+                敦煌作为古代丝绸之路的重要节点，见证了东西方文明的交流与融合。今天的"一带一路"倡议，正是对这种传统交流精神的传承和发扬。敦煌在"一带一路"倡议中扮演着重要的文化、经济和政治角色。
+            </p>
+            <div class="map-container">
+                <img src="../img/丝绸一带一路.jpg" alt="丝绸之路地图" style="width: 1200px; height: 400px; display: block; margin: 0 auto;">
+            </div>
+            <p class="intro-text" style="margin-top: 20px;">
+                敦煌不仅是古代丝绸之路的交通枢纽，更是文化交流的中心。通过敦煌，中国的丝绸、瓷器、茶叶等商品传播到西方，同时，西方的宝石、玻璃、葡萄等也传入中国。更重要的是，佛教、景教、伊斯兰教等宗教，以及音乐、舞蹈、绘画等艺术形式通过敦煌传入中国，对中国文化产生了深远影响。
+            </p>
+        </section>
+
+        <section class="modern-projects-section">
+            <h2 class="section-title">敦煌在"一带一路"中的现代项目</h2>
+            <div class="project-cards">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="../img/敦煌数字资源库.png" alt="国际敦煌文化交流中心">
+                    </div>
+                    <div class="project-details">
+                        <h3 class="project-title">国际敦煌文化交流中心</h3>
+                        <p class="project-description">
+                            作为"一带一路"文化合作的重要项目，国际敦煌文化交流中心致力于促进沿线国家之间的文化交流与合作，展示敦煌文化的独特魅力。
+                        </p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="../img/敦煌遗书数据库.jpg" alt="敦煌文化遗产数字化项目">
+                    </div>
+                    <div class="project-details">
+                        <h3 class="project-title">敦煌文化遗产数字化项目</h3>
+                        <p class="project-description">
+                            利用现代科技对莫高窟壁画和经卷进行数字化保护和展示，让全球观众都能欣赏敦煌的艺术珍品。
+                        </p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                       <img src="../img/敦煌英国.jpg" alt="敦煌丝绸之路旅游线路开发">
+                    </div>
+                    <div class="project-details">
+                        <h3 class="project-title">敦煌丝绸之路旅游线路开发</h3>
+                        <p class="project-description">
+                            结合"一带一路"旅游合作，开发以敦煌为中心的丝绸之路旅游线路，促进区域旅游经济发展。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy;版权所有 陆碧霞</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 这里可以添加页面加载完成后的初始化代码
+            // 例如：视频自动播放控制、响应式调整等
+        });
+    </script>
+</body>
+</html>
